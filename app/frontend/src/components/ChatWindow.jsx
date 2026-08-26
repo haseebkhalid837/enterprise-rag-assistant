@@ -14,7 +14,8 @@ function ChatWindow({
   sessionId,
   messages,
   setMessages,
-  onChatTitle
+  onChatTitle,
+  onOpenSidebar
 }) {
 
   const [
@@ -221,7 +222,18 @@ function ChatWindow({
 
       <header className="chat-header">
 
-        <div>
+        {/* Hamburger — visible on mobile only (via CSS) */}
+        <button
+          type="button"
+          className="mobile-menu-toggle"
+          onClick={onOpenSidebar}
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+
+        <div className="chat-header-text">
 
           <span className="chat-header-label">
             DOCUMENT ASSISTANT

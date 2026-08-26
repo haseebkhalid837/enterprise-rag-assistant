@@ -1287,3 +1287,113 @@ input:focus-visible {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* =========================================================
+   MOBILE MENU TOGGLE BUTTON
+========================================================= */
+
+.mobile-menu-toggle {
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+
+  background: var(--bg-card);
+  color: var(--text-primary);
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+.mobile-menu-toggle:hover {
+  background: var(--bg-card-hover);
+}
+
+
+/* =========================================================
+   SIDEBAR OVERLAY (mobile only)
+========================================================= */
+
+.sidebar-overlay {
+  display: none;
+}
+
+
+/* =========================================================
+   MOBILE LAYOUT (stacked, slide-out sidebar)
+========================================================= */
+
+@media (max-width: 640px) {
+
+  .app {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .chat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chat-header-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Sidebar becomes a slide-out drawer */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+
+    width: 82vw;
+    min-width: 82vw;
+    max-width: 320px;
+
+    transform: translateX(-100%);
+
+    transition: transform 0.25s ease;
+
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Dark overlay behind the open sidebar */
+  .sidebar-overlay.open {
+    display: block;
+
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  /* Main content takes full width */
+  .main-content {
+    width: 100%;
+  }
+
+  .message {
+    max-width: 92%;
+  }
+}

@@ -9,6 +9,8 @@ import {
 
 
 function Sidebar({
+  isOpen,
+  onClose,
   selectedDocument,
   onSelectDocument,
   onNewChat,
@@ -182,7 +184,7 @@ function Sidebar({
 
   return (
 
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? "open" : ""}`}>
 
 
       {/* =====================================================
@@ -206,6 +208,17 @@ function Sidebar({
           </span>
 
         </div>
+
+        {/* Close button — mobile only (styled via CSS) */}
+        <button
+          type="button"
+          className="mobile-menu-toggle"
+          onClick={onClose}
+          aria-label="Close menu"
+          style={{ marginLeft: "auto" }}
+        >
+          ✕
+        </button>
 
       </div>
 

@@ -61,6 +61,16 @@ function ChatPage() {
 
 
   // ==========================================
+  // MOBILE SIDEBAR TOGGLE
+  // ==========================================
+
+  const [
+    isSidebarOpen,
+    setIsSidebarOpen
+  ] = useState(false);
+
+
+  // ==========================================
   // LOAD RECENT CHATS
   // ==========================================
 
@@ -115,6 +125,8 @@ function ChatPage() {
     setSelectedDocument(null);
 
     setAppError("");
+
+    setIsSidebarOpen(false);
 
   }
 
@@ -260,6 +272,9 @@ function ChatPage() {
       );
 
 
+      setIsSidebarOpen(false);
+
+
     } catch (error) {
 
       console.error(
@@ -334,6 +349,8 @@ function ChatPage() {
       );
 
       setMessages([]);
+
+      setIsSidebarOpen(false);
 
       return;
 
@@ -475,7 +492,31 @@ function ChatPage() {
     <div className="app">
 
 
+      {/* =====================================================
+          MOBILE SIDEBAR OVERLAY
+      ===================================================== */}
+
+      <div
+        className={
+          `sidebar-overlay ${
+            isSidebarOpen ? "open" : ""
+          }`
+        }
+        onClick={() =>
+          setIsSidebarOpen(false)
+        }
+      />
+
+
       <Sidebar
+
+        isOpen={
+          isSidebarOpen
+        }
+
+        onClose={() =>
+          setIsSidebarOpen(false)
+        }
 
         selectedDocument={
           selectedDocument
@@ -560,6 +601,10 @@ function ChatPage() {
 
             onChatTitle={
               handleChatTitle
+            }
+
+            onOpenSidebar={() =>
+              setIsSidebarOpen(true)
             }
 
           />
